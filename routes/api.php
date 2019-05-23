@@ -15,4 +15,5 @@ use Illuminate\Http\Request;
 
 Route::middleware('throttle:60,1')->prefix('v1')->group(function(){
     Route::get('/articles','API\PostController@index');
+    Route::get('/article/{id}','API\PostController@detail')->where(['id'=>'[1-9]{1}[0-9]*']);
 });

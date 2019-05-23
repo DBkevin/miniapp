@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Http\Resources\PostResource;
 
 class PostController extends Controller
 {
@@ -27,5 +28,10 @@ class PostController extends Controller
             'articles'=>$items
         ];
         return response()->json($data);
+    }
+
+    public function detail($id){
+        $post=Post::findOrFail($id);
+        return new PostResource($post);
     }
 }
